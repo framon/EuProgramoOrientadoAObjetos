@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+</head>
+<body style="opacity: 0">
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/google_developers_icon_128.png"></aside>
+    <hgroup class="auto-fadein">
+      <h1 data-config-title></h1>
+      <h2 data-config-subtitle></h2>
+      <p data-config-presenter></p>
+    </hgroup>
+  </slide>
+
+
+  <slide class="title-slide segue nobackground">
+    <hgroup>
+      <h1><span class="red3">Você</span></h1>
+      <h2 data-config-subtitle></h2>
+      <p data-config-presenter></p>
+    </hgroup>
+  </slide>
+
+
+  <slide class="slide-big">
+    <hgroup>
+      <h2>Pesquisa</h2>
+    </hgroup>
+    <article>
+      <h1>Quem programa orientado a objetos?</h1>
+    </article>
+  </slide>
+
+
+  <slide class="slide-big">
+    <hgroup>
+      <h2>Pesquisa</h2>
+    </hgroup>
+    <article>
+      <h1><span class="green">Orientado a Objetos em C?</span></h1>
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <pre class="prettyprint" data-lang="C">
+#include&lt;stdio.h&gt;
+
+int main(){
+  int i = 1;
+  <b>printf("%d %d\n", i, i++);</b>
+  return 0;
+}
+</pre>
+    </aside>
+    <hgroup>
+      <h2><span class="green">Orientado a Objetos em C?</span></h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="C">
+typedef struct base {
+  int n;
+  void (* oper)(struct base *, int);
+} base_t;
+
+void sum (struct base *b, int i) {
+  b->n += i;
+}
+
+base_t new (int i) {
+  base_t b;
+  b.oper = *sum;
+  b.n = i;
+  return b;
+}
+
+int main(){
+  base_t b = new(10);
+  b.oper(&b, 7);
+
+  printf("## %d\n", b.n);
+  return 0;
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide class="slide-big">
+    <hgroup>
+      <h2>Pesquisa</h2>
+    </hgroup>
+    <article>
+      <h1><span class="green">Procedural<sup>*</sup> em Java?</span></h1>
+      <footer class="blue explain"><sup>*</sup>Estruturada .. Modular</footer>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2><span class="green">Isto é OO?</span></h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class VO {
+  private Long id;
+  private String descricao;
+  /* public getters e setters*/
+}
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class DAO {
+  public void criar(VO vo);
+  public void alterar(VO vo);
+  public void excluir(VO vo);
+  public VO obterPk(Long id);
+  public List&lt;VO&gt; obterTodos();
+}
+</pre>
+	<br>
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class Service {
+  private DAO dao;
+
+  private validar(VO vo)
+    throws AplicacaoException;
+
+  public void criar(VO vo);
+  public void alterar(VO vo);
+  public void excluir(VO vo);
+  public VO obterPk(Long id);
+  public List&lt;VO&gt; obterTodos();
+}
+</pre>
+      <pre class="prettyprint" data-lang="html" data-right>
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;title>Page&lt;/title>
+&lt;/head>
+&lt;body>
+  &lt;formp&gt;
+    &lt;input ...&gt;
+    &lt;!--[...]--&gt;
+  &lt;/form&gt;
+&lt;body>
+&lt;/html>
+</pre>
+    </article>
+  </slide>
+
+
+  <slide class="slide-big">
+    <hgroup>
+      <h2>Pesquisa</h2>
+    </hgroup>
+    <article>
+      <h1><span class="blue">Afinal, o que é OO?</span></h1>
+      <h2 class="build"><span class="yellow3">Paradigma de Programação</span></h2>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Afinal, o que é OO?</h2>
+      <h3>Paradigma de Programação</h3>
+    </hgroup>
+    <article>
+      <ul class="build">
+        <li>Fornece e determina a visão que o programador possui sobre a estruturação
+         e execução do programa.</li>
+
+        <li>Diferencia-se de Linguagens de Programação</li>
+      </ul>
+
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+        <p>Na qualidade de método de modelagem, é tida como a melhor estratégia para se eliminar o "gap
+semântico", dificuldade recorrente no processo de modelar o mundo real do domínio do problema em um
+conjunto de componentes de software que seja o mais fiel na sua representação deste domínio.</p>
+
+<p>Facilitaria a comunicação do profissional modelador e do usuário da área alvo, na medida em que a
+correlação da simbologia e conceitos abstratos do mundo real e da ferramenta de modelagem
+(conceitos, terminologia, símbolos, grafismo e estratégias) fosse a mais óbvia, natural e exata
+possível.</p>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Afinal, o que é OO?</h2>
+      <h3>Orientação a Objetos</h3>
+    </hgroup>
+    <article>
+      <p>Composição e interação entre diversas unidades de software 
+        <span class="blue">(objeto)</span></p>
+      <p>Modelagem do mundo real</p>
+      <ul class="build fade">
+        <li>Análise</li>
+        <li>Projeto</li>
+        <li><span class="blue"><b>Programação</b></span></li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide class="fill nobackground" style="background-image: url(images/eu.jpg)">
+    <aside class="note">
+      <section>
+      <ul>
+        <li>Geração Nova</li>
+        <li>Algoritmos e estrutura de dados</li>
+        <li>Iniciação Científica</li>
+      </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2 class="white">Eu..Tento</h2>
+    </hgroup>
+    <article>
+      <ul class="white">
+        <li>Ciência da Computação, UFBA 2000.1</li>
+        <li>Iniciação Científica →2001</li>
+        <li>Unitech →2002.09</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Isto é OO?</h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class VO {
+  private Long id;
+  private String descricao;
+  /* public getters e setters*/
+}
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class DAO {
+  public void criar(VO vo);
+  public void alterar(VO vo);
+  public void excluir(VO vo);
+  public VO obterPk(Long id);
+  public List&lt;VO&gt; obterTodos();
+}
+</pre>
+	<br>
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class Service {
+  private DAO dao;
+
+  private validar(VO vo)
+    throws AplicacaoException;
+
+  public void criar(VO vo);
+  public void alterar(VO vo);
+  public void excluir(VO vo);
+  public VO obterPk(Long id);
+  public List&lt;VO&gt; obterTodos();
+}
+</pre>
+      <pre class="prettyprint" data-lang="html" data-right>
+&lt;!DOCTYPE html>
+&lt;html>
+&lt;head>
+  &lt;title>Page&lt;/title>
+&lt;/head>
+&lt;body>
+  &lt;formp&gt;
+    &lt;input ...&gt;
+    &lt;!--[...]--&gt;
+  &lt;/form&gt;
+&lt;body>
+&lt;/html>
+</pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Isto é OO?</h2>
+      <h3>Esquema</h3>
+    </hgroup>
+    <article class="flexbox">
+      <img src="images/C-S-B.svg" class="reflect" alt="Cliente-Serviço-Banco" title="C-S-B">
+      <ul class="build">
+        <li>Indústria de transformação</li>
+        <li>Sistema validador</li>
+        <li>Dados são importantes</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+      <ul>
+        <li>Software autônomo e inteligente (pensar por mim)</li>
+        <li>Não quero fazer CRUD</li>
+        <li>Vc ver os dados do seu gmail / facebook?</li>
+        <li>Entregar resultado, valor, utilidades</li>
+      </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Isto é OO?</h2>
+      <h3>Esquema</h3>
+    </hgroup>
+    <article class="flexbox">
+      <img src="images/C-SB.svg" class="reflect" alt="Cliente-ServiçoBanco" title="C-SB">
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Objeto</h3>
+    </hgroup>
+    <article>
+      <p>Unidade de software com estado e comportamento</p>
+      <p>Estado</p>
+      <ul>
+        <li>Estrutura de dados</li>
+        <li>Interno e privativo</li>
+      </ul>
+      <p>Comportamento</p>
+      <ul>
+        <li>Conjunto de Operações</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Objeto</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="Java">
+enum Marcha {R, 1, 2, 3, 4, 5, 6}
+public class VeiculoService {  void salvarVeiculo(Veiculo veiculo); }
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class Veiculo {
+  private byte aceleracao;
+  private byte velocidade;
+  
+  private byte acelerador;
+  private byte freio;
+  private Marcha marchaEngatada;
+
+  public void acelerar(byte nivel);
+  public void frear(byte nivel);
+}
+</pre>
+
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class Veiculo {
+  private byte aceleracao;
+  private byte velocidade;
+  
+  private byte acelerador;
+  private byte freio;
+  private Marcha marchaEngatada;
+
+/* public getters e setters*/
+}
+</pre>
+
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+    </hgroup>
+    <article>
+      <h3 style="text-decoration:line-through">OO é fazer coleções e herança</h3>
+      <br/>
+      <h2 class="build"><span class="green">Dados + Código</span><span class="blue2"> + Visibilidade</span></h2>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Outras Definições</h3>
+    </hgroup>
+    <article>
+      <p>É como um processador com memória própria e independente de outros objetos</p>
+      <p>Bloco de dados privados envolvidos por código, de maneira que o acesso a ele só pode ser feito sob condições especiais</p>
+    </article>
+  </slide>
+
+
+  <slide>
+    <aside class="note">
+      <section>
+      <ul>
+        <li>Aumenta entendimento pelo gap semântico</li>
+      </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Objetivos</h3>
+    </hgroup>
+    <article>
+      <ul>
+        <li>Aumentar o entendimento</li>
+        <li>Facilitar a manutenção corretiva</li>
+        <li>Facilitar a manutenção evolutiva</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Composição</h3>
+    </hgroup>
+    <article class="flexbox vcenter">
+      <img src="images/esquema.svg" class="reflect" alt="Esquema Interação" title="Esquema">
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Técnicas que dão suporte</h3>
+    </hgroup>
+    <article>
+      <img style="float: left" src="images/objeto.svg" class="reflect" alt="Representação Objeto" title="Objeto">
+      <h2>Encapsulamento</h2>
+      <br>
+      <p>Princípio Fundamental</p>
+      <p>Diminuir os malefícios causados pela interferência externa sobre os dados</p>
+    </article>
+  </slide>
+
+  <slide>
+    <aside class="note">
+      <section>
+      <ul>
+        <li>Suporta extensão da funcionalidade</li>
+        <li>Possui interface estável</li>
+      </ul>
+      </section>
+    </aside>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Técnicas que dão suporte</h3>
+    </hgroup>
+    <article>
+      <img style="float: left" src="images/objeto.svg" class="reflect" alt="Representação Objeto" title="Objeto">
+      <h2>Open / Closed</h2>
+      <br>
+      <p><i>..should be open for extension, but closed for modification</i></p>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Outro Exemplo</h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class Pedido {
+  private BigDecimal total = BigDecimal.ZERO;
+  private List&lt;PedidoItem&gt; itens = new ArrayList&lt;&gt;();
+
+  public BigDecimal <b>getTotal</b>() {
+    return total;
+  }
+
+  public void <b>setTotal</b>(BigDecimal total) {
+    this.total = total;
+  }
+
+  public List&lt;PedidoItem&gt; <b>getItens</b>() {
+    return itens;
+  }
+
+  public void <b>setItens</b>(List&lt;PedidoItem&gt; itens) {
+    this.itens = itens;
+  }
+}
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class PedidoItem {
+  private BigDecimal preco = BigDecimal.ZERO;
+  private int quantidade;
+  private String nome;
+
+  public BigDecimal <b>getPreco</b>() {
+    return preco;
+  }
+
+  public void <b>setPreco</b>(BigDecimal preco) {
+    this.preco = preco;
+  }
+
+  public int <b>getQuantidade</b>() {
+    return quantidade;
+  }
+
+  public void <b>setQuantidade</b>(int quantidade) {
+    this.quantidade= quantidade;
+  }
+  ...
+}
+</pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Outro Exemplo</h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java">
+public class PedidoService {
+
+  public void calcularTotal(Pedido pedido) {
+    if (pedido == null) {
+      throw new IllegalArgumentException("pedido must not be null");
+    }
+
+    BigDecimal total = BigDecimal.ZERO;
+    List&lt;PedidoItem&gt; itens = pedido.getItens();
+    <b>
+    for (PedidoItem pedidoItem : itens) {
+      int quantidade = pedidoItem.getQuantidade();
+      BigDecimal preco = pedidoItem.getPreco();
+      BigDecimal itemTotal = preco.multiply(new BigDecimal(quantidade));
+      total = total.add(itemTotal);
+    }
+
+    pedido.setTotal(total);
+    </b>
+  }
+}
+</pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Outro Exemplo</h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class Pedido {
+
+ private BigDecimal total;
+
+ private List&lt;PedidoItem&gt; itens = new ArrayList&lt;&gt;();
+
+ public BigDecimal getTotal() {
+  if (total == null) {
+   BigDecimal pedidoItemTotal = BigDecimal.ZERO;
+   List&lt;PedidoItem&gt; itens = getItens();
+
+   for (PedidoItem pedidoItem : itens) {
+    BigDecimal itemTotal = pedidoItem.getTotal();
+    pedidoItemTotal = pedidoItemTotal.add(itemTotal);
+   }
+
+   this.total = pedidoItemTotal;
+ }
+ return total;
+}
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-right>
+
+ public void addItem(PedidoItem pedidoItem) {
+  if (pedidoItem == null) {
+   throw new IllegalArgumentException(
+     "pedidoItem must not be null");
+  }
+
+  <b>
+  if (this.itens.add(pedidoItem)) {
+   this.total = null;
+  }
+  </b>
+ }
+
+ public List&lt;PedidoItem&gt; getItens() {
+  return <b>Collections.unmodifiableList(itens)</b>;
+ }
+}
+</pre>
+    </article>
+  </slide>
+
+
+  <slide class="slide-big">
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+    </hgroup>
+    <article>
+      <h1>Reutilização de código</h1>
+      <h1>Modularidade</h1>
+      <h1><span class="red3">Imbatível</span>
+    </article>
+  </slide>
+
+
+  <slide class="slide-big">
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+    </hgroup>
+    <article>
+      <h2>Código Protegido - <i>Code Safety</i></h2><br/>
+      <h2 class="build"><span class="green2">idiot-proof-ness</span></h2><br/>
+      <h2 class="build"><span class="green3">design-by-contract</span></h2><br/>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Objeto</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="Java">
+void <del>List&lt;Empresa&gt;</del> Set&lt;Empresa&gt; obterEmpresas();
+
+List&lt;ItemInspecionado&gt; buscarItensInspecionadosPorNota(<del>Long numeroNmme, Long numeroNm</del>);  
+List&lt;ItemInspecionado&gt; buscarItensInspecionadosPorNota(NumeroNmme nmme, NumeroNm nm);
+
+  public void sincronizarDadosAfterLogin() {
+    if (getService().verificarNecessidadeSincronismoTabelaBasica()) {
+      getService().sincronizarDadosBasicos();
+    }
+  }
+
+
+</pre>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Efeitos Práticos @ Java</h2>
+      <h3>Visibilidade</h3>
+    </hgroup>
+    <article>
+      <ul>
+        <li><span class="red">private</span></li>
+        <li><span class="blue">package default</span></li>
+        <li><span class="green3">protected</span></li>
+        <li><span class="green">public</span></li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Efeitos Práticos @ Java</h2>
+      <h3>Visibilidade</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="Java" data-left>
+package foo;
+public class A {
+  private int privA;
+  int deftA;
+  protected int protA;
+  public int publA;
+}
+</pre>
+
+      <pre class="prettyprint" data-lang="Java" data-right>
+package foo;
+public class I {
+}
+</pre>
+
+      <pre class="prettyprint" data-lang="Java" data-right>
+package foo;
+public class II extends A {
+}
+</pre>
+
+      <pre class="prettyprint" data-lang="Java" data-left>
+package foo;
+public class B {
+  private int privB;
+  int deftB;
+  protected int protB;
+  public int publB;
+}
+</pre>
+
+      <pre class="prettyprint" data-lang="Java" data-right>
+package bar;
+public class III extends A {
+}
+</pre>
+
+      <pre class="prettyprint" data-lang="Java" data-right>
+package bar;
+public class IV {
+}
+</pre>
+    </article>
+  </slide>
+
+  <slide class="slide-big">
+    <hgroup>
+      <h2>Efeitos Práticos @ Java</h2>
+      <h3>Pacotes</h3>
+    </hgroup>
+    <article>
+      <h2><span class="red">Pacote não foi feito para classificar</span></h2>
+      <br>
+      <ul>
+        <li>query</li>
+        <li>enums</li>
+        <li>entity</li>
+        <li>valueobjects</li>
+        <li>services</li>
+        <li>builder</li>
+      </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Efeitos Práticos @ Java</h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java">
+public class ItemSaida extends ItemNotaMovimentacao implements Cloneable {
+  
+  public void adicionarItemInspecionadoRelacionado(ItemInspecionado itemInspecionado, Long quantidade) {
+    AssertUtils.assertNotNull(itemInspecionado, "msg.erro.nnmeentrada.obrigatorio");        
+    AssertUtils.assertNotNull(quantidade, "msg.erro.quantidade.obrigatorio");
+    AssertUtils.assertExpression(quantidade > 0, "msg.erro.quantidade.maiorquezero");
+
+    ItemRelacionado itemRelacionado = this.obterItemInspecionadoRelacionado(itemInspecionado);
+    if (itemRelacionado != null) {
+      itemRelacionado.setQuantidade(itemRelacionado.getQuantidade() + quantidade);
+            
+    } else {
+      itemRelacionado = new ItemRelacionado();
+      itemRelacionado.setItemSaida(this);
+      itemRelacionado.setQuantidade(quantidade);
+      itemRelacionado.setItemInspecionado(itemInspecionado);
+    }
+    itemInspecionado.debitar(quantidade);
+        
+    this.setQtdMaterial(this.getQtdMaterial() + quantidade);
+    this.itensRelacionados.add(itemRelacionado);
+    this.itensRelacionadosCarregados = true;
+    this.firePropertyChange(PROP_ITENS_RELACIONADOS, null, null);
+  }
+}
+</pre>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Efeitos Práticos @ Java</h2>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java">
+public class ItemInspecionado extends AbstractIdBean&lt;Long&gt; {
+  public void debitar(Long quantidade) {
+    AssertUtils.assertExpression(saldo >= quantidade, 
+      ConstantesI18N.ERRO_SALDO_NEGATIVO, getMaterial().getDescricao());
+        
+    Object old = this.saldo;
+    this.saldo = saldo - quantidade;
+    firePropertyChange(PROP_SALDO, old, this.saldo);
+  }
+    
+  public void creditar(Long quantidade) {
+    AssertUtils.assertExpression(quantidade + this.saldo &lt;= this.quantidade, 
+      ConstantesI18N.ERRO_SALDO_SUPERIOR_QTD);
+        
+    Object old = this.saldo;
+    this.saldo = saldo + quantidade;
+    firePropertyChange(PROP_SALDO, old, this.saldo);
+  }
+    
+  public Long getSaldo() {
+    return saldo;
+  }
+
+  public void setSaldo(Long saldo) {
+    Object old = this.saldo;
+    this.saldo = saldo;
+    firePropertyChange("saldo", old, this.saldo);
+  }
+}
+</pre>
+    </article>
+  </slide>
+
+
+  <slide class="segue dark quote nobackground">
+    <aside class="gdbar right bottom"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <q>
+        Don’t ask for the information you need to do the work; ask the object that has the information to do the work for you.
+      </q>
+      <div class="author">
+        Allen Holub @ JavaWorld.com, 09/05/03
+      </div>
+    </article>
+  </slide>
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/google_developers_icon_128.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thank You!&gt;</h2>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+  <slide class="backdrop"></slide>
+
+</slides>
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>

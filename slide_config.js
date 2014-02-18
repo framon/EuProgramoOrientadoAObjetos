@@ -1,12 +1,12 @@
 var SLIDE_CONFIG = {
   // Slide settings
   settings: {
-    title: 'Title Goes Here<br>Up To Two Lines',
-    subtitle: 'Subtitle Goes Here',
-    //eventInfo: {
-    //  title: 'Google I/O',
-    //  date: '6/x/2013'
-    //},
+    title: 'Eu ...',
+    subtitle: 'Programo Orientado a Objetos?',
+    eventInfo: {
+      title: 'Workshop Interno',
+      date: '05-Ago-2014'
+    },
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
     enableSlideAreas: true, // Default: true. False turns off the click areas on either slide of the slides.
@@ -22,19 +22,12 @@ var SLIDE_CONFIG = {
 
   // Author information
   presenters: [{
-    name: 'Firstname Lastname',
-    company: 'Job Title<br>Google',
-    gplus: 'http://plus.google.com/1234567890',
-    twitter: '@yourhandle',
-    www: 'http://www.you.com',
-    github: 'http://github.com/you'
-  }/*, {
-    name: 'Second Name',
-    company: 'Job Title, Google',
-    gplus: 'http://plus.google.com/1234567890',
-    twitter: '@yourhandle',
-    www: 'http://www.you.com',
-    github: 'http://github.com/you'
-  }*/]
+    name: 'Fábio Ramon',
+    company: 'Arquiteto de Software @ Petrobras',
+    gplus: 'https://plus.google.com/+FabioRamon',
+    www: 'http://framon.monzeu.eti.br',
+    github: 'http://github.com/framon'
+  }
+  ]
 };
 

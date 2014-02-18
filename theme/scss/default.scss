@@ -359,6 +359,19 @@ pre {
     padding: 2px 25px;
     text-transform: uppercase;
   }
+
+  &[data-left] {
+    width: 50%;
+    float: left;
+    clear: left;
+  }
+
+  &[data-right] {
+    width: 50%;
+    float: right;
+    clear: right;
+    left: 0px;
+  }
 }
 
 pre[data-lang="go"] {
@@ -543,8 +556,8 @@ article.smaller {
     }
   }
   pre {
-    font-size: 15px;
-    line-height: 20px;
+    font-size: 13px;
+    line-height: 18px;
     letter-spacing: 0;
   }
   q {
@@ -643,6 +656,9 @@ article.smaller {
     @include box-shadow(0 0 10px $gray-3);
     width: 60%;
     padding: 2em;
+    font-size: 15px;
+    line-height: 17px;
+    letter-spacing: 0;
   }
 }
 
@@ -724,6 +740,14 @@ article.smaller {
 
 .source {
   font-size: 14px;
+  color: $gray-2;
+  position: absolute;
+  bottom: $slide-top-bottom-padding + 30px;
+  left: $slide-left-right-padding;
+}
+
+footer.explain {
+  font-size: 28px;
   color: $gray-2;
   position: absolute;
   bottom: $slide-top-bottom-padding + 30px;
@@ -1043,5 +1067,16 @@ aside.gdbar {
 
   pre, code {
     font-family: monospace !important;
+  }
+}
+
+
+.slide-big {
+  article {
+    h1 {
+      font-size: 65px;
+      line-height: 1.4;
+      letter-spacing: -3px;
+    }
   }
 }
