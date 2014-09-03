@@ -5,7 +5,7 @@ var SLIDE_CONFIG = {
     subtitle: 'Programo Orientado a Objetos?',
     eventInfo: {
       title: 'Workshop Interno',
-      date: '05-Ago-2014'
+      date: '05-Set-2014'
     },
     useBuilds: true, // Default: true. False will turn off slide animation builds.
     usePrettify: true, // Default: true
