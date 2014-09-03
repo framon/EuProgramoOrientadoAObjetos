@@ -72,8 +72,8 @@ int main(){
     <hgroup>
       <h2><span class="green">Orientado a Objetos em C?</span></h2>
     </hgroup>
-    <article class="smaller">
-      <pre class="prettyprint" data-lang="C">
+    <article>
+      <pre class="prettyprint" data-lang="C" data-left>
 typedef struct base {
   int n;
   void (* oper)(struct base *, int);
@@ -89,7 +89,9 @@ base_t new (int i) {
   b.n = i;
   return b;
 }
+</pre>
 
+      <pre class="prettyprint" data-lang="C" data-right>
 int main(){
   base_t b = new(10);
   b.oper(&b, 7);
@@ -116,50 +118,58 @@ int main(){
       <h2><span class="green">Isto é OO?</span></h2>
     </hgroup>
     <article class="smaller">
-      <pre class="prettyprint" data-lang="Java" data-right>
-public class VO {
-  private Long id;
-  private String descricao;
-  /* public getters e setters*/
-}
-</pre>
-      <pre class="prettyprint" data-lang="Java" data-right>
-public class DAO {
-  public void criar(VO vo);
-  public void alterar(VO vo);
-  public void excluir(VO vo);
-  public VO obterPk(Long id);
-  public List&lt;VO&gt; obterTodos();
-}
-</pre>
-	<br>
       <pre class="prettyprint" data-lang="Java" data-left>
-public class Service {
-  private DAO dao;
+public class Instrutor {
+  private Long id;
+  private String primeiroNome;
+  private String ultimoNome;
+
+  public void setPrimeiroNome(String str) {
+    primeiroNome = str
+  }
+  public String getPrimeiroNome() {
+    return primeiroNome;
+  }
+
+  public void setUltimoNome(String str) {
+    ultimoNome = str
+  }
+  public String getUltimoNome() {
+    return ultimoNome;
+  }
+}
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class InstrutorService {
+  private DAO&lt;Instrutor&gt; dao;
 
   private validar(VO vo)
     throws AplicacaoException;
 
-  public void criar(VO vo);
-  public void alterar(VO vo);
-  public void excluir(VO vo);
-  public VO obterPk(Long id);
-  public List&lt;VO&gt; obterTodos();
+  public void inserir(Instrutor vo);
+  public void alterar(Instrutor vo);
+  public void excluir(Instrutor vo);
+  public Instrutor obterPk(Long id);
+  public List&lt;Instrutor&gt; obterTodos();
 }
 </pre>
-      <pre class="prettyprint" data-lang="html" data-right>
-&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-  &lt;title>Page&lt;/title>
-&lt;/head>
-&lt;body>
-  &lt;formp&gt;
-    &lt;input ...&gt;
-    &lt;!--[...]--&gt;
-  &lt;/form&gt;
-&lt;body>
-&lt;/html>
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class Main {
+  public static void main(String... args) {
+    InstrutorService service = ...
+    Instrutor o = service.obterPk(1);
+
+    <b>System.out.println(     );</b>
+  }
+}
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class DAO&lt;T&gt; {
+  public void salvar(T o);
+  public void excluir(T o);
+  public T obterPk(Long id);
+  public List&lt;T&gt; obterTodos();
+}
 </pre>
     </article>
   </slide>
@@ -251,49 +261,58 @@ possível.</p>
     </hgroup>
     <article class="smaller">
       <pre class="prettyprint" data-lang="Java" data-left>
-public class VO {
+public class Instrutor {
   private Long id;
-  private String descricao;
-  /* public getters e setters*/
+  private String primeiroNome;
+  private String ultimoNome;
+
+  public void setPrimeiroNome(String str) {
+    primeiroNome = str
+  }
+  public String getPrimeiroNome() {
+    return primeiroNome;
+  }
+
+  public void setUltimoNome(String str) {
+    ultimoNome = str
+  }
+  public String getUltimoNome() {
+    return ultimoNome;
+  }
 }
 </pre>
       <pre class="prettyprint" data-lang="Java" data-right>
-public class DAO {
-  public void criar(VO vo);
-  public void alterar(VO vo);
-  public void excluir(VO vo);
-  public VO obterPk(Long id);
-  public List&lt;VO&gt; obterTodos();
-}
-</pre>
-	<br>
-      <pre class="prettyprint" data-lang="Java" data-left>
-public class Service {
-  private DAO dao;
+public class InstrutorService {
+  private DAO&lt;Instrutor&gt; dao;
 
   private validar(VO vo)
     throws AplicacaoException;
 
-  public void criar(VO vo);
-  public void alterar(VO vo);
-  public void excluir(VO vo);
-  public VO obterPk(Long id);
-  public List&lt;VO&gt; obterTodos();
+  public void inserir(Instrutor vo);
+  public void alterar(Instrutor vo);
+  public void excluir(Instrutor vo);
+  public Instrutor obterPk(Long id);
+  public List&lt;Instrutor&gt; obterTodos();
 }
 </pre>
-      <pre class="prettyprint" data-lang="html" data-right>
-&lt;!DOCTYPE html>
-&lt;html>
-&lt;head>
-  &lt;title>Page&lt;/title>
-&lt;/head>
-&lt;body>
-  &lt;formp&gt;
-    &lt;input ...&gt;
-    &lt;!--[...]--&gt;
-  &lt;/form&gt;
-&lt;body>
-&lt;/html>
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class Main {
+  public static void main(String... args) {
+    InstrutorService service = ...
+    Instrutor o = service.obterPk(1);
+
+    <b>System.out.println(o.getPrimeiroNome() 
+      + " " + o.getUltimoNome());</b>
+  }
+}
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class DAO&lt;T&gt; {
+  public void salvar(T o);
+  public void excluir(T o);
+  public T obterPk(Long id);
+  public List&lt;T&gt; obterTodos();
+}
 </pre>
     </article>
   </slide>
@@ -393,6 +412,51 @@ public class Veiculo {
 }
 </pre>
 
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Objeto</h3>
+    </hgroup>
+    <article class="smaller">
+      <pre class="prettyprint" data-lang="Java" data-left>
+public class Instrutor {
+  private Long id;
+  private String primeiroNome;
+  private String ultimoNome;
+
+  public void setPrimeiroNome(String str) {
+    primeiroNome = str
+  }
+  public String getPrimeiroNome() {
+    return primeiroNome;
+  }
+
+  public void setUltimoNome(String str) {
+    ultimoNome = str
+  }
+  public String getUltimoNome() {
+    return ultimoNome;
+  }
+
+  public String getNomeCompleto() {
+    return primeiroNome + " " + ultimoNome;
+  }
+}
+</pre>
+</pre>
+      <pre class="prettyprint" data-lang="Java" data-right>
+public class Main {
+  public static void main(String... args) {
+    InstrutorService service = ...
+    Instrutor o = service.obterPk(1);
+
+    <b>System.out.println(o.getNomeCompleto())</b>
+  }
+}
+</pre>
     </article>
   </slide>
 
@@ -661,16 +725,62 @@ public class Pedido {
     <article>
       <pre class="prettyprint" data-lang="Java">
 void <del>List&lt;Empresa&gt;</del> Set&lt;Empresa&gt; obterEmpresas();
+</pre>
+
+      <pre class="prettyprint" data-lang="Java">
 
 List&lt;ItemInspecionado&gt; buscarItensInspecionadosPorNota(<del>Long numeroNmme, Long numeroNm</del>);  
 List&lt;ItemInspecionado&gt; buscarItensInspecionadosPorNota(NumeroNmme nmme, NumeroNm nm);
+</pre>
 
+      <pre class="prettyprint" data-lang="Java">
   public void sincronizarDadosAfterLogin() {
     if (getService().verificarNecessidadeSincronismoTabelaBasica()) {
       getService().sincronizarDadosBasicos();
     }
   }
+</pre>
 
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Mais exemplos</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="Java">
+public Collection&lt;String&gt; listaDoCombo() {
+  ArrayList&lt;String&gt; lista = new ArrayList&lt;&gt;();
+  lista.add("--selecione--");
+  for(Instrutor i : instrutores) {
+    lista.add(i.getNomeCompleto());
+  }
+  return lista;
+}
+
+</pre>
+
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Mais exemplos</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="Java">
+public class Main {
+  public static void main(String... args) {
+    /* Se um instrutor tem habilidade em determinado curso*/
+    Instrutor i = ...;
+    Curso c = ...;
+
+    System.out.println(  );
+  }
+}
 
 </pre>
 
