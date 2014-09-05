@@ -125,14 +125,14 @@ public class Instrutor {
   private String ultimoNome;
 
   public void setPrimeiroNome(String str) {
-    primeiroNome = str
+    primeiroNome = str;
   }
   public String getPrimeiroNome() {
     return primeiroNome;
   }
 
   public void setUltimoNome(String str) {
-    ultimoNome = str
+    ultimoNome = str;
   }
   public String getUltimoNome() {
     return ultimoNome;
@@ -267,14 +267,14 @@ public class Instrutor {
   private String ultimoNome;
 
   public void setPrimeiroNome(String str) {
-    primeiroNome = str
+    primeiroNome = str;
   }
   public String getPrimeiroNome() {
     return primeiroNome;
   }
 
   public void setUltimoNome(String str) {
-    ultimoNome = str
+    ultimoNome = str;
   }
   public String getUltimoNome() {
     return ultimoNome;
@@ -428,14 +428,14 @@ public class Instrutor {
   private String ultimoNome;
 
   public void setPrimeiroNome(String str) {
-    primeiroNome = str
+    primeiroNome = str;
   }
   public String getPrimeiroNome() {
     return primeiroNome;
   }
 
   public void setUltimoNome(String str) {
-    ultimoNome = str
+    ultimoNome = str;
   }
   public String getUltimoNome() {
     return ultimoNome;
@@ -503,6 +503,29 @@ public class Main {
         <li>Facilitar a manutenção corretiva</li>
         <li>Facilitar a manutenção evolutiva</li>
       </ul>
+    </article>
+  </slide>
+
+
+  <slide>
+    <hgroup>
+      <h2>Orientação a Objetos</h2>
+      <h3>Mais exemplos</h3>
+    </hgroup>
+    <article>
+      <pre class="prettyprint" data-lang="Java">
+public class Main {
+  public static void main(String... args) {
+    /* Se um instrutor tem habilidade em determinado curso*/
+    Instrutor i = ...;
+    Curso c = ...;
+
+    System.out.println(  );
+  }
+}
+
+</pre>
+
     </article>
   </slide>
 
@@ -771,17 +794,37 @@ public Collection&lt;String&gt; listaDoCombo() {
       <h3>Mais exemplos</h3>
     </hgroup>
     <article>
-      <pre class="prettyprint" data-lang="Java">
-public class Main {
-  public static void main(String... args) {
-    /* Se um instrutor tem habilidade em determinado curso*/
-    Instrutor i = ...;
-    Curso c = ...;
+      <pre class="prettyprint" data-lang="Java" data-left>
+package foo;
+public class Instrutor {
+  Long id;
+  String nome;
 
-    System.out.println(  );
+  public Long getId() {
+    return id;
+  }
+
+  public void setNome(String str) {
+    nome = str;
+  }
+  public String getNome() {
+    return nome;
   }
 }
+</pre>
 
+      <pre class="prettyprint" data-lang="Java" data-right>
+package foo;
+public class InstrutorBuilder {
+  /*...*/
+
+  public Instrutor build() {
+    Instrutor i = new Instrutor();
+    i.id = id;
+    i.nome = nome;
+    return i;
+  }
+}
 </pre>
 
     </article>
